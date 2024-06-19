@@ -110,7 +110,9 @@ class MovieHouseDatabaseManager:
         conn = self.get_connection()
         c = conn.cursor()
         try:
-            total_cost = sum([movie.cost for movie in movies])
+            room_cost = c.execute("SELECT cost FROM room WHERE id = ?", (room_id,)).fetchone()[0]
+            movies_cost = sum([movie.cost for movie in movies])
+            total_cost = room_cost + movies_cost
             c.execute("""
                       INSERT INTO 
                       room_record (room_id, total_cost, is_finished) 
