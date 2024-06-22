@@ -3,6 +3,7 @@ import sqlite3
 # Create a connection to the database
 connection = sqlite3.connect('movie_house.db')
 
+# Create a cursor object for the connection
 c = connection.cursor()
 
 # Delete the tables if they exist, so that we can recreate them
